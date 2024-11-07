@@ -7,7 +7,6 @@ export default function MainDisplay({ setCookies, cookies, cpc, cps }) {
       <p id="cookiesDisplay">Cookies: {cookies}</p>
       <p id="cpcCDisplay">CPC: {cpc}</p>
       <p id="cpsCDisplay">CPS: {cps}</p>
-      <p id="warningMsg">Not Enough Cookies!!</p>
     </div>
   );
 }
