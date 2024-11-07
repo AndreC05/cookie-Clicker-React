@@ -38,7 +38,7 @@ export default function UpgradesDisplay({
   }
 
   return (
-    <div>
+    <div id="upgradesDisplay">
       {upgradeData.map((upgradeType, index) => (
         <div key={upgradeType.id}>
           <h3>{upgradeType.name}</h3>

@@ -1,1 +1,62 @@
+html,
+body {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: monospace;
+}
 
+/*-------------------------------------APP---------------------------------------------  */
+
+.app-container {
+  display: grid;
+  grid-template-rows: 5% 95%;
+  grid-template-columns: repeat(4, 25%);
+  grid-auto-flow: column;
+  background-color: rgb(10, 10, 15);
+  height: 100vh;
+}
+
+/*-------------------------------------HEADER---------------------------------------------  */
+header {
+  color: antiquewhite;
+  display: grid;
+  grid-column: 1 / span 4;
+  grid-row: 1;
+  grid-template-columns: subgrid;
+}
+
+#title {
+  grid-column: 1 / span 2;
+}
+
+nav {
+  grid-column: 4;
+}
+
+/*-------------------------------------MAIN---------------------------------------------  */
+main {
+  color: antiquewhite;
+  display: grid;
+  grid-column: 1 / span 4;
+  grid-row: 2 / span 3;
+  grid-template-columns: subgrid;
+  grid-template-rows: 25% 5% 70%;
+}
+
+#mainDisplay {
+  grid-column: 2 / span 2;
+  grid-row: 1;
+}
+
+#shop {
+  grid-column: 1 / span 4;
+  grid-row: 2;
+}
+
+main #upgradesDisplay {
+  display: grid;
+  grid-column: 1 / span 4;
+  grid-row: 3;
+  grid-template-columns: subgrid;
+}

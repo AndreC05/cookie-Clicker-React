@@ -103,7 +103,7 @@ export default function App() {
   }, []);
 
   return (
-    <div>
+    <div className="app-container">
       <Header loadCounters={loadCounters} save={save} />
       <main>
         <MainDisplay

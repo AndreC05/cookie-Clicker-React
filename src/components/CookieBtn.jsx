@@ -6,7 +6,9 @@ export default function CookieBtn({ setCookies, cookies, cpc }) {
 
   return (
     <div>
-      <button onClick={increaseByCpc}>Click Me!!</button>
+      <button id="mainBtn" onClick={increaseByCpc}>
+        Click Me!!
+      </button>
     </div>
   );
 }
