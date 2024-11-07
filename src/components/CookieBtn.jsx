@@ -1,5 +1,5 @@
 export default function CookieBtn({ setCookies, cookies, cpc }) {
-  //increase cookies by cpc
+  //--------------------------------------------------------------increase cookies by cpc
   function increaseByCpc() {
     setCookies(cookies + cpc);
   }

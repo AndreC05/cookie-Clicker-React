@@ -1,5 +1,5 @@
 export default function HeaderButtons({ loadCounters, save }) {
-  //Reset function
+  //------------------------------------------------------------------Reset function
   function reset() {
     localStorage.setItem("cookies", 0);
     localStorage.setItem("cpc", 1);

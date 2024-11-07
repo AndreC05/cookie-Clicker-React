@@ -4,15 +4,9 @@ import MainDisplay from "./components/MainDisplay";
 import UpgradesDisplay from "./components/UpgradesDisplay";
 
 export default function App() {
-  //Upgrade data for cpc upgrade
-  const cpcUpgrade = {
-    id: 0,
-    name: "CPC Upgrade",
-    cost: 50,
-    increase: 1,
-  };
+  //--------------------------------------------------------------------Variables and Constants
   //local list of upgrade objects
-  let upgradeData = [];
+  const [upgradeData, setUpgradeData] = useState([]);
 
   //get the values for the counters from local storage or initialise them as a default value(0 or 1)
   const [cookies, setCookies] = useState(
@@ -30,7 +24,7 @@ export default function App() {
   const cookiesRef = useRef(cookies);
   const upgradeLevelRef = useRef(upgradeLevel);
 
-  //Save gamestate -- not to be used inside useEffect
+  //-----------------------------------------------------------Save gamestate -- not to be used inside useEffect
   function save() {
     localStorage.setItem("cpc", cpc);
     localStorage.setItem("cps", cps);
@@ -38,7 +32,7 @@ export default function App() {
     localStorage.setItem("upgradeLevel", JSON.stringify(upgradeLevel));
   }
 
-  //Load counters
+  //------------------------------------------------------------------------------Load counters
   function loadCounters() {
     setCookies(parseInt(localStorage.getItem("cookies")) || 0);
     setCps(parseInt(localStorage.getItem("cps")) || 0);
@@ -49,7 +43,7 @@ export default function App() {
     }
   }
 
-  // Update refs when state changes
+  // ----------------------------------------------------------------Update refs when state changes
   useEffect(() => {
     cookiesRef.current = cookies;
   }, [cookies]);
@@ -66,6 +60,7 @@ export default function App() {
     upgradeLevelRef.current = upgradeLevel;
   }, [upgradeLevel]);
 
+  //-------------------------------------------------------------create 1second interval
   useEffect(() => {
     const interval = setInterval(() => {
       setCookies((current) => current + cpsRef.current); // increase cookies by cps
@@ -83,6 +78,30 @@ export default function App() {
     return () => clearInterval(interval);
   }, []);
 
+  //----------------------------------------------------------------fetch API upgrade data;
+  useEffect(() => {
+    //Upgrade data for cpc upgrade
+    const cpcUpgrade = {
+      id: 0,
+      name: "CPC Upgrade",
+      cost: 50,
+      increase: 1,
+    };
+
+    async function handleFetch() {
+      const response = await fetch(
+        "https://cookie-upgrade-api.vercel.app/api/upgrades"
+      );
+      const data = await response.json();
+
+      data.unshift(cpcUpgrade); //Add cpc upgrade to the beginning of the array
+
+      setUpgradeData(data);
+    }
+
+    handleFetch();
+  }, []);
+
   return (
     <div>
       <Header loadCounters={loadCounters} save={save} />
@@ -94,7 +113,18 @@ export default function App() {
           cps={cps}
         />
         <h1 id="shop">Shop</h1>
-        <UpgradesDisplay />
+        <UpgradesDisplay
+          setCookies={setCookies}
+          setCpc={setCpc}
+          setCps={setCps}
+          cookies={cookies}
+          cpc={cpc}
+          cps={cps}
+          upgradeData={upgradeData}
+          upgradeLevel={upgradeLevel}
+          setUpgradeLevel={setUpgradeLevel}
+          save={save}
+        />
       </main>
     </div>
   );
