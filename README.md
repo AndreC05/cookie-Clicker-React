@@ -6,7 +6,7 @@
 -Save button: Save current gamestate. Gamestate is also saved every second
 
 -Click cookie image to increase cookies by CPC value. \
--Click upgrade button bellow each title to increase CPC/CPS by stated value \
+-Click upgrade button bellow each title to increase CPC/CPS by stated value.
 
 # Reflection:
 
