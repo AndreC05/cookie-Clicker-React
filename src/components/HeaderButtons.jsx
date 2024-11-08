@@ -1,5 +1,10 @@
 export default function HeaderButtons({ loadCounters, save }) {
-  //------------------------------------------------------------------Reset function
+  //------------------------------------------------------------------Reset Btn
+  function playResetSound() {
+    const resetSound = new Audio("/resetAudio.mp3");
+    resetSound.play();
+  }
+
   function reset() {
     localStorage.setItem("cookies", 0);
     localStorage.setItem("cpc", 1);
@@ -8,10 +13,26 @@ export default function HeaderButtons({ loadCounters, save }) {
     loadCounters();
   }
 
+  function handleResetBtn() {
+    reset();
+    playResetSound();
+  }
+
+  //------------------------------------------------------------------Save Btn
+  function playSaveSound() {
+    const saveSound = new Audio("/saveAudio.mp3");
+    saveSound.play();
+  }
+
+  function handleSaveBtn() {
+    save();
+    playSaveSound();
+  }
+
   return (
     <nav>
-      <button onClick={save}>Save</button>
-      <button onClick={reset}>Reset</button>
+      <button onClick={handleSaveBtn}>Save</button>
+      <button onClick={handleResetBtn}>Reset</button>
     </nav>
   );
 }

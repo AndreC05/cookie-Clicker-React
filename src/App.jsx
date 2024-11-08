@@ -60,7 +60,7 @@ export default function App() {
     upgradeLevelRef.current = upgradeLevel;
   }, [upgradeLevel]);
 
-  //-------------------------------------------------------------create 1second interval
+  //-------------------------------------------------------------create 1 second interval
   useEffect(() => {
     const interval = setInterval(() => {
       setCookies((current) => current + cpsRef.current); // increase cookies by cps

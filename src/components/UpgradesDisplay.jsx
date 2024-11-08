@@ -10,12 +10,20 @@ export default function UpgradesDisplay({
   setUpgradeLevel,
   save,
 }) {
+  //--------------------------------------------Btn Audio
+  function playUpgradeSound() {
+    const upgradeSound = new Audio("/yay.mp3");
+    upgradeSound.play();
+  }
+
+  //---------------------------------------------Upgrade function
   function handleUpgrade(upgradeType, upgradeLevel) {
     let currentId = upgradeType.id; //get id to use as index to navigate upgradeLevel array
     const currentCost =
       upgradeType.cost + upgradeLevel[currentId] * upgradeType.cost * 0.2; // current cost equation
 
     if (cookies >= currentCost) {
+      playUpgradeSound();
       setCookies(cookies - currentCost);
 
       //create new updated upgradeLevel array
@@ -41,8 +49,9 @@ export default function UpgradesDisplay({
     <div id="upgradesDisplay">
       {upgradeData.map((upgradeType, index) => (
         <div key={upgradeType.id}>
-          <h3>{upgradeType.name}</h3>
+          <h3 id="upgradeTitle">{upgradeType.name}</h3>
           <button
+            id="upgradeBtn"
             disabled={
               upgradeType.cost + upgradeLevel[index] * upgradeType.cost * 0.2 >
               cookies
@@ -53,7 +62,7 @@ export default function UpgradesDisplay({
           >
             Upgrade
           </button>
-          <h4>
+          <h4 id="upgradeCost">
             Cost:
             {upgradeType.cost + upgradeLevel[index] * upgradeType.cost * 0.2}
           </h4>

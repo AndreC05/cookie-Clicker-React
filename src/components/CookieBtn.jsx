@@ -4,11 +4,21 @@ export default function CookieBtn({ setCookies, cookies, cpc }) {
     setCookies(cookies + cpc);
   }
 
+  //---------------------------------------------------------------handle main Btn
+
+  function playClickSound() {
+    const clickSound = new Audio("/click.mp3");
+    clickSound.play();
+  }
+
+  function handleMainBtn() {
+    increaseByCpc();
+    playClickSound();
+  }
+
   return (
     <div>
-      <button id="mainBtn" onClick={increaseByCpc}>
-        Click Me!!
-      </button>
+      <button id="mainBtn" onClick={handleMainBtn}></button>
     </div>
   );
 }
